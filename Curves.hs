@@ -78,6 +78,11 @@ connect p q = Curve ((unCurve p) ++ (unCurve q))
  -
  - Definition of rotate
  -
+ - This function conforms to the specification.
+ -
+ - It's a weird implementations in two regards:
+ -  * The built-in functions `sin` and `cos` uses radians. This doesn't.
+ -  * Normal rotation in mathematics is defined in the counter-clockwise direction. This isn't.
  -}
 class Rotatable a where
 	rotate :: a -> Double -> a
@@ -88,7 +93,7 @@ instance Rotatable Point where
 			(x, y) = unPoint p
 			x' = x * cos theta' - y * sin theta'
 			y' = x * sin theta' + y * cos theta'
-			theta' = theta * pi / 180
+			theta' = -theta * pi / 180
 
 instance Rotatable Curve where
 	rotate ps theta = Curve [ rotate p theta | p <- unCurve ps ]
