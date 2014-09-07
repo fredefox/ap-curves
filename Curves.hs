@@ -45,7 +45,24 @@ instance Eq Point where
 newtype Curve = Curve { unCurve :: [Point] } deriving (Show)
 
 -- Again the specification asks for a lower-case constructor `point'
-curve = Curve
+{-
+ - The definition of `point` varies from what I initially thought it should be because
+ - it aparantly takes a first argument which should be the first point on the curve.
+ - I implement this by just letting the "starting-point" be the head of the
+ - array of points (which is a curve) at any given time.
+ -
+ - So for instance a two curves
+ -
+ -     [s1, ...], [s2, ...]
+ -
+ - with respective starting points `s1` and `s2` joined together produces:
+ -
+ -     [s1, ...]
+ -
+ - Note that only one starting point is defined for this curve.
+ -
+ -}
+curve sp ps = Curve (sp:ps)
 
 {-
  - ***
