@@ -10,6 +10,9 @@ import Text.Printf
  -
  - `toSvg`
  -
+ - TODO: .svg-files cannot have negative coordinates.
+ - All `Point`s should be translated so that there are no negative coordinates.
+ -
  -}
 toSvg :: Curve -> String
 toSvg crv =
@@ -48,5 +51,5 @@ toSVG = toSvg
 toFile :: Curve -> FilePath -> IO ()
 toFile crv fp = writeFile fp (toSvg crv)
 
-aCurve = curve (point (0,100)) (map point [(500,200),(100,100),(0,100)])
+aCurve = Curve (map Point [(0,0),(100,100),(0,200),(100,300),(0,400),(200,400),(150,300),(150,0),(100,200)])
 main = toFile aCurve "test.svg"
