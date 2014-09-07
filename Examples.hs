@@ -17,10 +17,10 @@
  -      (/\\_  (/\\_
  -
  -}
-
 module Examples where
 
 import Curves
+import Export
 {-
  - ***
  -
@@ -39,3 +39,6 @@ hilbert c = c0 `connect` c1 `connect` c2 `connect` c3
           c1 = c `translate` (point (w+p+w, h))
           c2 = c
           c3 = ch `rotate` 90 `translate` (point (0, h+p))
+
+showHilbert :: String -> IO ()
+showHilbert name = toFile (hilbert $ hilbert $ hilbert $ hilbert $ curve (point (0,0)) []) (name ++ ".svg")
