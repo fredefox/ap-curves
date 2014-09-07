@@ -70,9 +70,8 @@ curve sp ps = Curve (sp:ps)
  - Definition of connect
  -
  -}
-connect :: Point -> [Point] -> Curve
-connect p [] = Curve [p]
-connect p ps = Curve (p : ps)
+connect :: Curve -> Curve -> Curve
+connect p q = Curve ((unCurve p) ++ (unCurve q))
 
 {-
  - ***
