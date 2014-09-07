@@ -11,14 +11,13 @@ import Text.Printf
  - `toSvg`
  -
  -}
-aCurve = Curve [Point (0,0), Point (2,2), Point (2, 4)]
 toSvg :: Curve -> String
 toSvg crv =
 	"<svg xmlns=\"http://www.w3.org/2000/svg\" " ++
 		(printf
 			"width=\"%dpx\" height=\"%dpx\" version=\"1.1\">"
-			(ceiling (height crv)::Int)
 			(ceiling (width crv)::Int)
+			(ceiling (height crv)::Int)
 		) ++
 		"<g>" ++
 			(lines (unCurve crv)) ++
@@ -39,3 +38,15 @@ toSvg crv =
 -- Abbreviations should be treated like words in CamelCase -
 -- only have their first letter be upper-case
 toSVG = toSvg
+
+{-
+ - ***
+ -
+ - `toFile`
+ -
+ -}
+toFile :: Curve -> FilePath -> IO ()
+toFile crv fp = writeFile fp (toSvg crv)
+
+aCurve = curve (point (0,100)) (map point [(500,200),(100,100),(0,100)])
+main = toFile aCurve "test.svg"
