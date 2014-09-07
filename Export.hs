@@ -1,4 +1,4 @@
-module Curves.Export where
+module Export where
 
 -- The stuff we can export
 import Curves
