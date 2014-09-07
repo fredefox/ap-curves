@@ -42,7 +42,7 @@ instance Eq Point where
  - Definition of `Curve'
  -
  -}
-newtype Curve = Curve { unCurve :: [Point] } deriving (Show)
+newtype Curve = Curve { unCurve :: [Point] } deriving (Show, Eq)
 
 -- Again the specification asks for a lower-case constructor `point'
 {-
