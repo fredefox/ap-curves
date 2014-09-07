@@ -43,13 +43,13 @@ toSvg crv =
 			(ceiling (height crv)::Int)
 		) ++
 		"<g>" ++
-			(lines (unCurve crv)) ++
+			(lines' (unCurve crv)) ++
 		"</g>" ++
 	"</svg>"
 		where
-			lines ps = concat [
+			lines' ps = concat [
 				segment a b |
-					(i, e) <- zip [0..] ps,
+					(i, _) <- zip [0..] ps,
 					let a = unPoint (ps !! i),
 					let b = unPoint (ps !! ( i + 1 )),
 					i < length ps - 1
@@ -60,6 +60,7 @@ toSvg crv =
 
 -- Abbreviations should be treated like words in CamelCase -
 -- only have their first letter be upper-case
+toSVG :: Curve -> String
 toSVG = toSvg
 
 {-
@@ -70,6 +71,3 @@ toSVG = toSvg
  -}
 toFile :: Curve -> FilePath -> IO ()
 toFile crv fp = writeFile fp (toSvg crv)
-
-aCurve = Curve (map Point [(0,0),(100,100),(0,200),(100,300),(0,400),(200,400),(150,300),(150,0),(100,200)])
-main = toFile aCurve "test.svg"
