@@ -1,3 +1,43 @@
+{-
+ - ***
+ -
+ - This module implements all the functions of the curve-library.
+ -
+ - The implementation follows the specification located at:
+ -
+ -     [advanced programming course homepage](http://www.diku.dk/~kflarsen/ap-2014/curves/curves.html)
+ -
+ - Multiple times in the code I have chosen to make implementations that differ a bit.
+ - These implementations have been marked with a tick-symbol.
+ - Reasons for doing this could be that the my implementations is more in
+ - line with the mathematical definition or to create a looser coupling
+ - between the elements of the library.
+ -
+ - All functions mentioned in the specification have reference implementations here.
+ -
+ - This library defines the following symbols:
+ -
+ -  * types:
+ -    * Point
+ -    * Curve
+ -    * Axis
+ -  * transformations:
+ -    * rotate
+ -    * translate
+ -    * reflect
+ -  * other functions:
+ -    * bbox
+ -
+ - Written by Frederik Hanghøj Iversen
+ - for the course Advanced Programming
+ - at The University of Copenhagen 2014
+ -
+ - me@fredefox.eu /^._
+ -  ,___,--~~~~--' /'~
+ -  `~--~\ )___,)/'
+ -      (/\\_  (/\\_
+ -
+ -}
 module Curves where
 
 
