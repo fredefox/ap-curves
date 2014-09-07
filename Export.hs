@@ -14,9 +14,9 @@ import Text.Printf
 aCurve = Curve [Point (0,0), Point (2,2), Point (2, 4)]
 toSvg :: Curve -> String
 toSvg crv =
-	"<svg xmlns =\"http://www.w3.org/2000/svg\" " ++
+	"<svg xmlns=\"http://www.w3.org/2000/svg\" " ++
 		(printf
-			"width=\"%d\" height=\"%d\" version=\"1.1\">"
+			"width=\"%dpx\" height=\"%dpx\" version=\"1.1\">"
 			(ceiling (height crv)::Int)
 			(ceiling (width crv)::Int)
 		) ++
@@ -34,7 +34,7 @@ toSvg crv =
 				]
 			segment a b = printf s (fst a) (fst b) (snd a) (snd b)
 			s     = "<line style=\"stroke-width: 2px; stroke: black; fill:white\" " ++
-				"x1=\"%f\" x2=\"%f\" y1=\"%f\" y2=\"%f\"/>"
+				"x1=\"%.2f\" x2=\"%.2f\" y1=\"%.2f\" y2=\"%.2f\"/>"
 
 -- Abbreviations should be treated like words in CamelCase -
 -- only have their first letter be upper-case
