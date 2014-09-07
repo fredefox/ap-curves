@@ -56,6 +56,7 @@ newtype Point = Point { unPoint :: (Double, Double) } deriving (Show)
  - Because the specification asks for a constructor called `point'
  -
  -}
+point :: (Double, Double) -> Point
 point = Point
 
 
@@ -102,6 +103,7 @@ newtype Curve = Curve { unCurve :: [Point] } deriving (Show, Eq)
  - Note that only one starting point is defined for this curve.
  -
  -}
+curve :: Point -> [Point] -> Curve
 curve sp ps = Curve (sp:ps)
 
 {-
@@ -214,7 +216,7 @@ class Reflectable' a where
 instance Reflectable' Point where
 	reflect' a axis
 		| axis == Vertical   = Point (-a1,  a2)
-		| axis == Horizontal = Point ( a1, -a2)
+		| otherwise          = Point ( a1, -a2)
 		where (a1, a2) = unPoint a
 
 instance Reflectable' Curve where
@@ -228,7 +230,7 @@ instance Reflectable Point where
 	reflect p axis delta = translate' (reflect' p axis) q
 		where q
 			| axis == Horizontal = Point (0, delta)
-			| axis == Vertical   = Point (delta, 0)
+			| otherwise          = Point (delta, 0)
 
 instance Reflectable Curve where
 	reflect crv axis delta = Curve [ reflect p axis delta | p <- unCurve crv ]
