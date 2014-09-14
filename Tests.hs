@@ -38,5 +38,18 @@ tests = [
 	let
 		aCurve      = Curve [Point (1,1)]
 		thatRotated = Curve [Point (sqrt 2, 0)]
-	in (rotate aCurve 45) == thatRotated
+	in (rotate aCurve 45) == thatRotated,
+	let
+		aCurve         = Curve [Point (0, 0), Point (0,1)]
+		translater     = Point (0,1)
+		thatTranslated = Curve [Point (0,1), Point (0,2)]
+	in translate aCurve translater == thatTranslated,
+	let
+		aCurve        = Curve [Point (1,1)]
+		thatReflected = Curve [Point (1,-1)]
+	in reflect aCurve Horizontal 0 == thatReflected,
+	let
+		aCurve   = Curve (map Point [(4,5),(7,9),(6,5),(2,5),(3,3)])
+		itsBbox  = (Point (2,3), Point (7,9))
+	in bbox aCurve == itsBbox
 	]

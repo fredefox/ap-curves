@@ -75,7 +75,6 @@ instance Eq Point where
 		where
 			(a1, a2) = unPoint a
 			(b1, b2) = unPoint b
-	a /= b = not (a == b)
 
 {-
  - ***
